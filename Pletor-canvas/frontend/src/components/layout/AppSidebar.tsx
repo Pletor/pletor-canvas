@@ -1,12 +1,12 @@
-import { MENU_ITEMS } from '../../data/menuItems'
-import './Sidebar.css'
+import { MENU_ITEMS } from '../../data/appMenuItems'
+import './AppSidebar.css'
 
-interface SidebarProps {
+interface AppSidebarProps {
   activeMenu: string
   onMenuSelect: (id: string) => void
 }
 
-function Sidebar({ activeMenu, onMenuSelect }: SidebarProps) {
+function AppSidebar({ activeMenu, onMenuSelect }: AppSidebarProps) {
   return (
     <aside className="sidebar">
       <div className="sidebar-icons">
@@ -48,4 +48,4 @@ function Sidebar({ activeMenu, onMenuSelect }: SidebarProps) {
   )
 }
 
-export default Sidebar
+export default AppSidebar

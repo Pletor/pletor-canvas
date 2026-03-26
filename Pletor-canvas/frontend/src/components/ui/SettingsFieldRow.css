@@ -28,6 +28,18 @@
   padding: 6px 12px;
   min-width: 180px;
   text-align: right;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.field-input:focus {
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+
+/* Select */
+.field-select-wrapper {
+  position: relative;
 }
 
 .field-select {
@@ -43,12 +55,56 @@
   justify-content: space-between;
   gap: 8px;
   cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.field-select:hover,
+.field-select.open {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.field-select.open svg {
+  transform: rotate(180deg);
 }
 
 .field-select svg {
   color: #64748b;
+  transition: transform 0.2s ease;
 }
 
+.field-select-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 100%;
+  background: rgba(15, 27, 20, 0.95);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  padding: 4px;
+  z-index: 50;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.field-select-option {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #94a3b8;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.field-select-option:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: #e2e8f0;
+}
+
+.field-select-option.active {
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+/* Toggle */
 .field-toggle {
   width: 40px;
   height: 22px;

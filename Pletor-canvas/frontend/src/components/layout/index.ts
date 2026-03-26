@@ -1,3 +1,3 @@
-export { default as Header } from './Header'
-export { default as Sidebar } from './Sidebar'
-export { default as Footer } from './Footer'
+export { default as AppHeader } from './AppHeader'
+export { default as AppSidebar } from './AppSidebar'
+export { default as AppFooter } from './AppFooter'

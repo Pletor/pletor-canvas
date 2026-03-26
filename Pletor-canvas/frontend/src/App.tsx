@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Header, Sidebar, Footer } from './components/layout'
+import { AppHeader, AppSidebar, AppFooter } from './components/layout'
 import { SettingsPage, CanvasPage } from './pages'
 import './App.css'
 
@@ -13,12 +13,12 @@ function App() {
 
   return (
     <div className="app-layout">
-      <Header onLaunch={() => setView('canvas')} />
+      <AppHeader onLaunch={() => setView('canvas')} />
       <main className="app-main">
-        <Sidebar activeMenu={activeMenu} onMenuSelect={setActiveMenu} />
+        <AppSidebar activeMenu={activeMenu} onMenuSelect={setActiveMenu} />
         <SettingsPage activeMenu={activeMenu} />
       </main>
-      <Footer />
+      <AppFooter />
     </div>
   )
 }

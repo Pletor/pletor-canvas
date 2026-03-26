@@ -1,10 +1,10 @@
-import './Header.css'
+import './AppHeader.css'
 
-interface HeaderProps {
+interface AppHeaderProps {
   onLaunch: () => void
 }
 
-function Header({ onLaunch }: HeaderProps) {
+function AppHeader({ onLaunch }: AppHeaderProps) {
   return (
     <header className="header">
       <div className="header-left">
@@ -29,4 +29,4 @@ function Header({ onLaunch }: HeaderProps) {
   )
 }
 
-export default Header
+export default AppHeader

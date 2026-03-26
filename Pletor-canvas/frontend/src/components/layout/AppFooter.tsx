@@ -1,6 +1,6 @@
-import './Footer.css'
+import './AppFooter.css'
 
-function Footer() {
+function AppFooter() {
   return (
     <footer className="app-footer">
       <button className="footer-toggle-btn" aria-label="Toggle sidebar">
@@ -13,4 +13,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default AppFooter
