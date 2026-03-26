@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Cache
+.cache/
+.parcel-cache/
+.turbo/
+
+# Docker
+docker-data/
+
+# Temporary
+*.tmp
+*.temp
+
+# Pletor specifické
+Pletor-mindset/
+03_UPGRADED_PROMPTS.md
+
+# Referenční obrázky v .claude (velké, nejsou kód)
+.claude/agents/*.jpg
+.claude/agents/*.png
+
+# Úvodní screenshot
+Pletor-canvas/*.jpg
+
+# Claude lokální instrukce (osobní, nesdílí se)
+CLAUDE.local.md

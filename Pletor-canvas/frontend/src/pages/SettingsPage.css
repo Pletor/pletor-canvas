@@ -1,0 +1,89 @@
+.settings-page {
+  flex: 1;
+  padding: 16px 16px 16px 8px;
+  overflow-y: auto;
+}
+
+.settings-empty {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: rgba(15, 27, 20, 0.5);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+.settings-content {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: rgba(15, 27, 20, 0.5);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-header {
+  margin-bottom: 32px;
+}
+
+.settings-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+
+.settings-description {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.settings-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.settings-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(16, 185, 129, 0.08);
+}
+
+.btn-save {
+  padding: 10px 24px;
+  border-radius: 8px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-save:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.btn-reset {
+  padding: 10px 24px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-reset:hover {
+  border-color: rgba(100, 116, 139, 0.4);
+  color: #94a3b8;
+}

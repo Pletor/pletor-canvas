@@ -1,0 +1,103 @@
+.canvas-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0c1f17;
+}
+
+.canvas-toolbar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: rgba(12, 31, 23, 0.9);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+  flex-shrink: 0;
+}
+
+.canvas-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.canvas-back-btn:hover {
+  color: #e2e8f0;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.canvas-toolbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.canvas-toolbar-info {
+  display: flex;
+  gap: 16px;
+}
+
+.canvas-node-count,
+.canvas-edge-count {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* 3-sloupcový layout: knihovna | canvas | inspector */
+.canvas-workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.canvas-container {
+  flex: 1;
+}
+
+/* Handle styly */
+.canvas-page .react-flow__handle {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #0c1f17;
+}
+
+/* Controls */
+.canvas-controls {
+  background: rgba(15, 27, 20, 0.9) !important;
+  border: 1px solid rgba(16, 185, 129, 0.15) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.canvas-controls button {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(16, 185, 129, 0.08) !important;
+  color: #94a3b8 !important;
+  fill: #94a3b8 !important;
+}
+
+.canvas-controls button:hover {
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+
+.canvas-controls button svg {
+  fill: #94a3b8 !important;
+}
+
+/* MiniMap */
+.canvas-minimap {
+  background: rgba(15, 27, 20, 0.9) !important;
+  border: 1px solid rgba(16, 185, 129, 0.15) !important;
+  border-radius: 8px !important;
+}
+
+/* Výběr uzlu */
+.canvas-page .react-flow__node.selected .pletor-node {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}

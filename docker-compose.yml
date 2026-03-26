@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build:
+      context: ./Pletor-canvas/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3080:80"
+    restart: unless-stopped
+
+  # Backend — připraveno pro Fázi 1
+  # backend:
+  #   build:
+  #     context: ./Pletor-canvas/backend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - DATABASE_URL=postgresql://pletor:pletor@db:5432/pletor
+  #   depends_on:
+  #     - db
+  #   restart: unless-stopped
+
+  # Databáze — připraveno pro Fázi 1
+  # db:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     POSTGRES_USER: pletor
+  #     POSTGRES_PASSWORD: pletor
+  #     POSTGRES_DB: pletor
+  #   volumes:
+  #     - docker-data/postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+
+# volumes:
+#   postgres-data:

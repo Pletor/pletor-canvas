@@ -1,0 +1,50 @@
+.canvas-navigation {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 16px;
+  height: 36px;
+  background: rgba(12, 31, 23, 0.8);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+  flex-shrink: 0;
+}
+
+.canvas-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.canvas-nav-btn:hover:not(.disabled) {
+  color: #e2e8f0;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.canvas-nav-btn.active {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  font-weight: 600;
+}
+
+.canvas-nav-btn.disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.canvas-nav-soon {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #475569;
+  background: rgba(71, 85, 105, 0.15);
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
