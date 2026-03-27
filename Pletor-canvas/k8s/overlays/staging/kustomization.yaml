@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: pletor-staging
+
+resources:
+  - ../../base
+
+patches:
+  - path: configmap-patch.yaml
+
+replicas:
+  - name: frontend
+    count: 1
+  - name: backend
+    count: 1
+
+images:
+  - name: ghcr.io/OWNER/pletor-frontend
+    newTag: staging
+  - name: ghcr.io/OWNER/pletor-backend
+    newTag: staging

@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: pletor
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - frontend/deployment.yaml
+  - frontend/service.yaml
+  - backend/deployment.yaml
+  - backend/service.yaml
+  - database/statefulset.yaml
+  - database/service.yaml
+  - ingress.yaml
