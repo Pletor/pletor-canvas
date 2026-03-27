@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://workflowy.com/api/v1/nodes?parent_id=home -H \"Authorization: Bearer 3de4533b7e47061cabf59330a67902e4f1eb2f86\")"
+    ]
+  }
+}

@@ -1,7 +1,8 @@
 import type { FastifyInstance, FastifyReply } from 'fastify'
 
-// Všechny budoucí endpointy registrovány jako 501 Not Implemented
+// Budoucí endpointy registrovány jako 501 Not Implemented
 // Podle principu: registrace → implementace → rozšíření
+// WorkFlowy routes přesunuty do workflowyRoutes.ts (Fáze 2 — implementováno)
 
 function notImplemented(_req: unknown, reply: FastifyReply) {
   return reply.status(501).send({
@@ -11,11 +12,6 @@ function notImplemented(_req: unknown, reply: FastifyReply) {
 }
 
 export async function futureRoutes(app: FastifyInstance) {
-  // Fáze 2 — WorkFlowy sync
-  app.get('/api/v1/workflowy/sync', notImplemented)
-  app.post('/api/v1/workflowy/sync', notImplemented)
-  app.get('/api/v1/workflowy/nodes', notImplemented)
-
   // Fáze 3 — AI Agent pipeline
   app.get('/api/v1/agents', notImplemented)
   app.post('/api/v1/agents/:id/execute', notImplemented)

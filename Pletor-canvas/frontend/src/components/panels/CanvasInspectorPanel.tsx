@@ -15,7 +15,11 @@ function CanvasInspectorPanel() {
     return (
       <div className="inspector-panel">
         <div className="inspector-empty">
-          <span className="inspector-empty-icon">👆</span>
+          <span className="inspector-empty-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M15 3L21 9M21 9L15 15M21 9H9M9 21L3 15M3 15L9 9M3 15H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </span>
           <span className="inspector-empty-text">Vyber uzel na canvasu</span>
         </div>
       </div>
@@ -24,6 +28,7 @@ function CanvasInspectorPanel() {
 
   const nodeData = selectedNode.data as PletorNodeData
   const colors = NODE_COLORS[nodeData.nodeType]
+  const workflowy = nodeData.workflowy
 
   return (
     <div className="inspector-panel">
@@ -69,12 +74,49 @@ function CanvasInspectorPanel() {
           </select>
         </div>
 
-        {/* WorkFlowy metadata — placeholder pro Fázi 2 */}
+        {/* WorkFlowy metadata */}
         <div className="inspector-section">
           <span className="inspector-section-label">WorkFlowy</span>
-          <div className="inspector-placeholder">
-            Připravujeme — Fáze 2
-          </div>
+
+          {workflowy?.workflowyNodeId ? (
+            <div className="inspector-wf-data">
+              {workflowy.prompt && (
+                <div className="inspector-wf-field">
+                  <span className="inspector-wf-tag">PROMPT</span>
+                  <p className="inspector-wf-value">{workflowy.prompt}</p>
+                </div>
+              )}
+              {workflowy.context && (
+                <div className="inspector-wf-field">
+                  <span className="inspector-wf-tag">CONTEXT</span>
+                  <p className="inspector-wf-value">{workflowy.context}</p>
+                </div>
+              )}
+              {workflowy.intent && (
+                <div className="inspector-wf-field">
+                  <span className="inspector-wf-tag">INTENT</span>
+                  <p className="inspector-wf-value">{workflowy.intent}</p>
+                </div>
+              )}
+              {workflowy.constraints && workflowy.constraints.length > 0 && (
+                <div className="inspector-wf-field">
+                  <span className="inspector-wf-tag">CONSTRAINTS</span>
+                  <ul className="inspector-wf-constraints">
+                    {workflowy.constraints.map((c, i) => (
+                      <li key={i}>{c}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <span className="inspector-wf-link">
+                ID: {workflowy.workflowyNodeId}
+              </span>
+            </div>
+          ) : (
+            <div className="inspector-placeholder">
+              Nepropojeno s WorkFlowy
+            </div>
+          )}
         </div>
       </div>
 
