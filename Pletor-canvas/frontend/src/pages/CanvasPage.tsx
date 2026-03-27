@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, type DragEvent } from 'react'
+import { useState, useCallback, type DragEvent } from 'react'
 import {
   ReactFlow,
   Background,
@@ -14,10 +14,10 @@ import { useCanvasStore } from '../store/canvasStore'
 import { pletorNodeTypes } from '../components/canvas'
 import { pletorEdgeTypes } from '../components/canvas/edges'
 import { CanvasNodeLibraryPanel, CanvasInspectorPanel } from '../components/panels'
-import { SEED_NODES, SEED_EDGES } from '../data/canvasSeedData'
 import { NODE_COLORS } from '../types/canvas.types'
 import type { PletorNodeData, PletorNodeType } from '../types/canvas.types'
 import { useCanvasKeyboard } from '../hooks/useCanvasKeyboard'
+import { useCanvasInit, useCanvasAutoSave } from '../hooks/useCanvasSync'
 import CanvasNavigation from '../components/layout/CanvasNavigation'
 import './CanvasPage.css'
 
@@ -33,18 +33,13 @@ function CanvasPageInner({ onBack }: CanvasPageProps) {
   const onConnect = useCanvasStore((s) => s.onConnect)
   const selectNode = useCanvasStore((s) => s.selectNode)
   const addNode = useCanvasStore((s) => s.addNode)
-  const setInitialData = useCanvasStore((s) => s.setInitialData)
+  const syncStatus = useCanvasStore((s) => s.syncStatus)
   const reactFlowInstance = useReactFlow()
   const [activeSection, setActiveSection] = useState('canvas')
 
   useCanvasKeyboard()
-
-  // Při prvním spuštění načti seed data (pokud je store prázdný)
-  useEffect(() => {
-    if (nodes.length === 0) {
-      setInitialData(SEED_NODES, SEED_EDGES)
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  useCanvasInit()
+  useCanvasAutoSave()
 
   const onNodeClick: NodeMouseHandler = useCallback(
     (_event, node) => {
@@ -103,6 +98,8 @@ function CanvasPageInner({ onBack }: CanvasPageProps) {
         <div className="canvas-toolbar-info">
           <span className="canvas-node-count">{nodes.length} uzlů</span>
           <span className="canvas-edge-count">{edges.length} spojení</span>
+          {syncStatus === 'saving' && <span className="canvas-sync-status saving">Ukládám...</span>}
+          {syncStatus === 'error' && <span className="canvas-sync-status error">Offline</span>}
         </div>
       </div>
       <CanvasNavigation activeSection={activeSection} onSectionChange={setActiveSection} />

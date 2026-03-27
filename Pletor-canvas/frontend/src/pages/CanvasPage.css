@@ -49,6 +49,22 @@
   color: #64748b;
 }
 
+.canvas-sync-status {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.canvas-sync-status.saving {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.canvas-sync-status.error {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.1);
+}
+
 /* 3-sloupcový layout: knihovna | canvas | inspector */
 .canvas-workspace {
   flex: 1;
