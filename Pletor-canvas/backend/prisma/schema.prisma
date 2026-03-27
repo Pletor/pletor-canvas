@@ -41,6 +41,7 @@ model CanvasNode {
   canvas      Canvas       @relation(fields: [canvasId], references: [id], onDelete: Cascade)
   sourceEdges CanvasEdge[] @relation("SourceNode")
   targetEdges CanvasEdge[] @relation("TargetNode")
+  executions  AgentExecution[]
 
   @@index([canvasId])
 }
@@ -64,4 +65,25 @@ model CanvasEdge {
   @@index([canvasId])
   @@index([sourceId])
   @@index([targetId])
+}
+
+model AgentExecution {
+  id          String   @id @default(cuid())
+  canvasNodeId String
+  status      String   @default("pending") // pending | running | completed | failed
+  prompt      String   // Sestavený prompt pro Claude
+  context     String   // Sestavený kontext (JSON)
+  output      String?  // Výstup od Claude
+  error       String?  // Chybová zpráva při selhání
+  model       String   @default("claude-sonnet-4-20250514")
+  tokensIn    Int?
+  tokensOut   Int?
+  durationMs  Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  canvasNode CanvasNode @relation(fields: [canvasNodeId], references: [id], onDelete: Cascade)
+
+  @@index([canvasNodeId])
+  @@index([status])
 }

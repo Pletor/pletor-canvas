@@ -1,6 +1,7 @@
 import { useCanvasStore } from '../../store/canvasStore'
 import { NODE_COLORS } from '../../types/canvas.types'
 import type { PletorNodeData } from '../../types/canvas.types'
+import InspectorAgentSection from './InspectorAgentSection'
 import './CanvasInspectorPanel.css'
 
 function CanvasInspectorPanel() {
@@ -118,6 +119,9 @@ function CanvasInspectorPanel() {
             </div>
           )}
         </div>
+
+        {/* AI Agent */}
+        <InspectorAgentSection nodeId={selectedNode.id} />
       </div>
 
       <div className="inspector-actions">

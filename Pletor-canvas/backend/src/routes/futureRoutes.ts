@@ -12,11 +12,6 @@ function notImplemented(_req: unknown, reply: FastifyReply) {
 }
 
 export async function futureRoutes(app: FastifyInstance) {
-  // Fáze 3 — AI Agent pipeline
-  app.get('/api/v1/agents', notImplemented)
-  app.post('/api/v1/agents/:id/execute', notImplemented)
-  app.get('/api/v1/agents/:id/context', notImplemented)
-
   // Fáze 4 — File system integrace
   app.get('/api/v1/filesystem/tree', notImplemented)
   app.get('/api/v1/filesystem/file', notImplemented)
