@@ -1,0 +1,130 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_PREFIX: ${{ github.repository_owner }}/pletor
+
+jobs:
+  # === Kvalita kódu — Backend ===
+  quality-backend:
+    name: Backend Lint + Types
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend-python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: ruff check app/
+      - run: ruff format --check app/
+
+  # === Kvalita kódu — Frontend ===
+  quality-frontend:
+    name: Frontend Lint + Types
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npx tsc --noEmit
+
+  # === Backend testy ===
+  test-backend:
+    name: Backend Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend-python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: pytest --tb=short -q
+
+  # === Docker build + push ===
+  build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: [quality-backend, quality-frontend, test-backend]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        include:
+          - context: backend-python
+            image: backend
+          - context: frontend
+            image: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_PREFIX }}-${{ matrix.image }}
+          tags: |
+            type=sha
+            type=raw,value=latest
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ${{ matrix.context }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+  # === Deploy staging (připraveno pro K8s) ===
+  deploy-staging:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: github.ref == 'refs/heads/main'
+    environment: staging
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "K8s staging deploy — připraveno pro kustomize apply"
+          echo "Image tag: sha-${GITHUB_SHA::7}"
+          # kubectl apply -k k8s/overlays/staging/ (aktivovat po nastavení clusteru)
+
+  # === Deploy production (manuální schválení) ===
+  deploy-production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    needs: [deploy-staging]
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "K8s production deploy — připraveno pro kustomize apply"
+          echo "Image tag: sha-${GITHUB_SHA::7}"
+          # kubectl apply -k k8s/overlays/production/ (aktivovat po nastavení clusteru)

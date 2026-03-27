@@ -1,21 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:8080'
-
-async function fetchApi<T>(path: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers,
-    },
-  })
-
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Chyba serveru' }))
-    throw new Error(error.message)
-  }
-
-  return response.json()
-}
+import { fetchApi } from './fetchApi'
 
 export interface WorkFlowyNodeDto {
   id: string
@@ -32,10 +15,10 @@ export const workflowyApi = {
   status: () =>
     fetchApi<{ configured: boolean }>('/api/v1/workflowy/status'),
 
-  configure: (sessionToken: string) =>
+  configure: (apiKey: string) =>
     fetchApi<{ status: string }>('/api/v1/workflowy/configure', {
       method: 'POST',
-      body: JSON.stringify({ sessionToken }),
+      body: JSON.stringify({ apiKey }),
     }),
 
   getTree: () =>
