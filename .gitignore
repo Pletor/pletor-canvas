@@ -37,6 +37,13 @@ docker-data/
 *.tmp
 *.temp
 
+# SQLite
+*.db
+*.db-journal
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
 # Pletor specifické
 Pletor-mindset/
 03_UPGRADED_PROMPTS.md

@@ -16,11 +16,14 @@ import type {
   PletorEdgeType,
   PletorNodeData,
 } from '../types/canvas.types'
+import { canvasApi } from '../api/canvasApi'
 
 interface CanvasState {
   nodes: PletorNode[]
   edges: PletorEdge[]
   selectedNodeId: string | null
+  activeCanvasId: string | null
+  syncStatus: 'idle' | 'saving' | 'error'
 
   // React Flow handlery
   onNodesChange: OnNodesChange
@@ -42,6 +45,11 @@ interface CanvasState {
   // Persistence
   resetCanvas: () => void
   setInitialData: (nodes: PletorNode[], edges: PletorEdge[]) => void
+
+  // API sync
+  saveToServer: () => Promise<void>
+  loadFromServer: (canvasId: string) => Promise<void>
+  setActiveCanvasId: (id: string | null) => void
 }
 
 let nodeIdCounter = 0
@@ -71,6 +79,8 @@ export const useCanvasStore = create<CanvasState>()(
       nodes: [],
       edges: [],
       selectedNodeId: null,
+      activeCanvasId: null,
+      syncStatus: 'idle' as const,
 
       onNodesChange: (changes) => {
         set({ nodes: applyNodeChanges(changes, get().nodes) as PletorNode[] })
@@ -150,13 +160,82 @@ export const useCanvasStore = create<CanvasState>()(
       setInitialData: (nodes, edges) => {
         set({ nodes, edges, selectedNodeId: null })
       },
+
+      setActiveCanvasId: (id) => {
+        set({ activeCanvasId: id })
+      },
+
+      // Uloží aktuální stav na server (batch save)
+      saveToServer: async () => {
+        const { activeCanvasId, nodes, edges } = get()
+        if (!activeCanvasId) return
+
+        set({ syncStatus: 'saving' })
+
+        const apiNodes = nodes.map((n) => ({
+          id: n.id,
+          nodeType: (n.data as PletorNodeData).nodeType,
+          label: (n.data as PletorNodeData).label,
+          description: (n.data as PletorNodeData).description,
+          status: (n.data as PletorNodeData).status ?? 'active',
+          positionX: n.position.x,
+          positionY: n.position.y,
+        }))
+
+        const apiEdges = edges.map((e) => ({
+          id: e.id,
+          edgeType: e.type ?? 'dataFlow',
+          sourceId: e.source,
+          targetId: e.target,
+          label: (e.data as { label?: string })?.label,
+          animated: e.animated ?? false,
+        }))
+
+        try {
+          await canvasApi.batchSave(activeCanvasId, { nodes: apiNodes, edges: apiEdges })
+          set({ syncStatus: 'idle' })
+        } catch {
+          set({ syncStatus: 'error' })
+        }
+      },
+
+      // Načte canvas ze serveru a nastaví do storu
+      loadFromServer: async (canvasId) => {
+        try {
+          const canvas = await canvasApi.getCanvas(canvasId)
+          const nodes: PletorNode[] = canvas.nodes.map((n) => ({
+            id: n.id,
+            type: n.nodeType as PletorNodeType,
+            position: { x: n.positionX, y: n.positionY },
+            data: {
+              label: n.label,
+              nodeType: n.nodeType as PletorNodeType,
+              description: n.description ?? undefined,
+              status: (n.status as 'active' | 'draft' | 'archived') ?? 'active',
+            },
+          }))
+
+          const edges: PletorEdge[] = canvas.edges.map((e) => ({
+            id: e.id,
+            source: e.sourceId,
+            target: e.targetId,
+            type: e.edgeType,
+            animated: e.animated,
+            data: { edgeType: e.edgeType as PletorEdgeType },
+          }))
+
+          set({ nodes, edges, activeCanvasId: canvasId, selectedNodeId: null })
+        } catch {
+          // Fallback — zůstaň na localStorage datech
+        }
+      },
     }),
     {
       name: 'pletor-canvas-storage',
-      // Serializace jen nodes, edges — funkce se neukládají
       partialize: (state) => ({
         nodes: state.nodes,
         edges: state.edges,
+        activeCanvasId: state.activeCanvasId,
       }),
     },
   ),
