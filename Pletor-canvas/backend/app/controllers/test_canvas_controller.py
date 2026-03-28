@@ -170,7 +170,6 @@ async def test_batch_save_replaces_all(client: AsyncClient):
     canvas = (await client.post("/api/v1/canvas", json={"name": "Replace test"})).json()
     cid = canvas["id"]
 
-    # První batch — 3 uzly
     await client.put(f"/api/v1/canvas/{cid}/batch", json={
         "nodes": [
             {"id": "a", "nodeType": "file", "label": "A", "positionX": 0, "positionY": 0},
@@ -180,7 +179,6 @@ async def test_batch_save_replaces_all(client: AsyncClient):
         "edges": [],
     })
 
-    # Druhý batch — jen 1 uzel (nahradí předchozí)
     await client.put(f"/api/v1/canvas/{cid}/batch", json={
         "nodes": [
             {"id": "d", "nodeType": "file", "label": "D", "positionX": 0, "positionY": 0},
@@ -208,7 +206,6 @@ async def test_response_uses_camel_case(client: AsyncClient):
     assert "positionY" in node
     assert "canvasId" in node
     assert "createdAt" in node
-    # snake_case klíče NESMÍ být v odpovědi
     assert "node_type" not in node
     assert "position_x" not in node
     assert "canvas_id" not in node

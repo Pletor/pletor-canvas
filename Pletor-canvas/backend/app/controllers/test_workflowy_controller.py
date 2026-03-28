@@ -18,7 +18,6 @@ async def test_workflowy_configure(client: AsyncClient):
     assert resp.status_code == 200
     assert resp.json()["status"] == "ok"
     assert wf_service.is_workflowy_configured() is True
-    # Vyčisti stav
     wf_service._client = None
 
 

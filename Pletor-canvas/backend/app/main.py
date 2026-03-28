@@ -14,7 +14,8 @@ from app.middlewares.error_handler import register_error_handlers
 from app.controllers.canvas_controller import router as canvas_router
 from app.controllers.workflowy_controller import router as workflowy_router
 from app.controllers.agent_controller import router as agent_router
-from app.controllers.future_controller import router as future_router
+from app.controllers.tree_controller import router as tree_router
+from app.models.tree_node import TreeNode  # noqa: F401
 
 
 @asynccontextmanager
@@ -31,7 +32,7 @@ app = FastAPI(title="Pletor API", version="0.1.0", lifespan=lifespan)
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.CORS_ORIGIN],
+    allow_origins=[settings.CORS_ORIGIN, "http://localhost:3001", "http://localhost:3002", "http://localhost:3003"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -44,7 +45,7 @@ register_error_handlers(app)
 app.include_router(canvas_router)
 app.include_router(workflowy_router)
 app.include_router(agent_router)
-app.include_router(future_router)
+app.include_router(tree_router)
 
 
 # Health check
