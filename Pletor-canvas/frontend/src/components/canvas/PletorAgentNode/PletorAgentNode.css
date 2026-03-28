@@ -1,0 +1,18 @@
+@layer components {
+  .pletor-node-agent {
+    background: var(--color-node-agent-alpha);
+    border-color: var(--color-node-agent-border);
+    color: var(--color-node-agent-light);
+    border-radius: var(--radius-xl);
+    min-inline-size: 9rem;
+
+    .pletor-node-badge {
+      background: oklch(from var(--color-node-agent) l c h / 0.25);
+      color: var(--color-node-agent-light);
+    }
+  }
+
+  .react-flow__node.selected .pletor-node-agent {
+    box-shadow: 0 0 1.25rem oklch(from var(--color-node-agent) l c h / 0.3);
+  }
+}

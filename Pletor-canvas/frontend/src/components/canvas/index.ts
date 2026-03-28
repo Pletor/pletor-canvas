@@ -1,9 +1,8 @@
-import PletorFolderNode from './PletorFolderNode'
-import PletorFileNode from './PletorFileNode'
-import PletorAgentNode from './PletorAgentNode'
-import PletorIntegrationNode from './PletorIntegrationNode'
+import PletorFolderNode from './PletorFolderNode/PletorFolderNode'
+import PletorFileNode from './PletorFileNode/PletorFileNode'
+import PletorAgentNode from './PletorAgentNode/PletorAgentNode'
+import PletorIntegrationNode from './PletorIntegrationNode/PletorIntegrationNode'
 
-// React Flow nodeTypes registrace — klíče odpovídají PletorNodeType
 export const pletorNodeTypes = {
   folder: PletorFolderNode,
   file: PletorFileNode,

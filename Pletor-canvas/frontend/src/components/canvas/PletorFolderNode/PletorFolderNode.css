@@ -1,0 +1,17 @@
+@layer components {
+  .pletor-node-folder {
+    background: var(--color-primary-alpha-12);
+    border-color: var(--color-primary-alpha-40);
+    color: var(--color-primary-lighter);
+    min-inline-size: 10rem;
+
+    .pletor-node-badge {
+      background: var(--color-primary-alpha-20);
+      color: var(--color-primary-lighter);
+    }
+  }
+
+  .react-flow__node.selected .pletor-node-folder {
+    box-shadow: 0 0 1.25rem var(--color-primary-alpha-30);
+  }
+}

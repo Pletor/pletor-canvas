@@ -1,0 +1,23 @@
+@layer components {
+  /* File a Component (fialová) */
+  .pletor-node-file,
+  .pletor-node-component {
+    background: var(--color-node-file-alpha);
+    border-color: var(--color-node-file-border);
+    color: var(--color-node-file-light);
+  }
+
+  /* Service (jantarová) */
+  .pletor-node-service {
+    background: var(--color-node-service-alpha);
+    border-color: var(--color-node-service-border);
+    color: var(--color-node-service-light);
+  }
+
+  /* API (modrá) */
+  .pletor-node-api {
+    background: var(--color-node-api-alpha);
+    border-color: var(--color-node-api-border);
+    color: var(--color-node-api-light);
+  }
+}

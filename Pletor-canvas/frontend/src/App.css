@@ -1,11 +1,13 @@
-.app-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
+@layer components {
+  .app-layout {
+    display: flex;
+    flex-direction: column;
+    block-size: 100dvh;
+  }
 
-.app-main {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
+  .app-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
 }

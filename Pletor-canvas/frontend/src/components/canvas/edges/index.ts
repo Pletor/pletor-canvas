@@ -1,9 +1,8 @@
-import PletorImportEdge from './PletorImportEdge'
-import PletorApiCallEdge from './PletorApiCallEdge'
-import PletorDataFlowEdge from './PletorDataFlowEdge'
-import PletorEventEdge from './PletorEventEdge'
+import PletorImportEdge from './PletorImportEdge/PletorImportEdge'
+import PletorApiCallEdge from './PletorApiCallEdge/PletorApiCallEdge'
+import PletorDataFlowEdge from './PletorDataFlowEdge/PletorDataFlowEdge'
+import PletorEventEdge from './PletorEventEdge/PletorEventEdge'
 
-// React Flow edgeTypes registrace — klíče odpovídají PletorEdgeType
 export const pletorEdgeTypes = {
   import: PletorImportEdge,
   apiCall: PletorApiCallEdge,

@@ -1,0 +1,20 @@
+@layer components {
+  .app-footer {
+    block-size: 2rem;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--space-2);
+    border-block-start: 1px solid var(--color-border);
+
+    .footer-toggle-btn {
+      color: var(--color-text-subtle);
+      padding: var(--space-1);
+      border-radius: var(--radius-sm);
+      transition: color var(--duration-fast) var(--ease-out);
+
+      &:hover {
+        color: var(--color-text-muted);
+      }
+    }
+  }
+}

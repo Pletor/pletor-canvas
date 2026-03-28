@@ -1,1 +1,1 @@
-export { default as SettingsFieldRow } from './SettingsFieldRow'
+export { default as SettingsFieldRow } from './SettingsFieldRow/SettingsFieldRow'

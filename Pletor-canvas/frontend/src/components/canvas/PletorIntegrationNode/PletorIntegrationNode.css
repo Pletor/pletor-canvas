@@ -1,0 +1,16 @@
+@layer components {
+  .pletor-node-integration {
+    background: var(--color-node-integration-alpha);
+    border-color: var(--color-node-integration-border);
+    color: var(--color-node-integration-light);
+
+    .pletor-node-badge {
+      background: oklch(from var(--color-node-integration) l c h / 0.20);
+      color: var(--color-node-integration-light);
+    }
+  }
+
+  .react-flow__node.selected .pletor-node-integration {
+    box-shadow: 0 0 1.25rem oklch(from var(--color-node-integration) l c h / 0.3);
+  }
+}

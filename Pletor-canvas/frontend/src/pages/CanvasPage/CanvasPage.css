@@ -1,0 +1,121 @@
+@layer components {
+  .canvas-page {
+    display: flex;
+    flex-direction: column;
+    block-size: 100dvh;
+    background: var(--color-bg-base);
+
+    .canvas-toolbar {
+      block-size: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: var(--space-4);
+      background: oklch(from var(--color-bg-base) l c h / 0.90);
+      border-block-end: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    .canvas-back-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      transition: all var(--duration-fast) var(--ease-out);
+
+      &:hover {
+        color: var(--color-text);
+        background: var(--color-primary-alpha-8);
+      }
+    }
+
+    .canvas-toolbar-title {
+      font-size: var(--text-md);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .canvas-toolbar-info {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .canvas-node-count,
+    .canvas-edge-count {
+      font-size: var(--text-xs);
+      color: var(--color-text-subtle);
+    }
+
+    .canvas-sync-status {
+      font-size: var(--text-xs);
+      padding: 0.125em 0.5em;
+      border-radius: var(--radius-sm);
+
+      &.saving {
+        color: var(--color-saving);
+        background: var(--color-saving-alpha);
+      }
+
+      &.error {
+        color: var(--color-danger-light);
+        background: var(--color-error-alpha);
+      }
+    }
+
+    /* 3-sloupcový layout: knihovna | canvas | inspector */
+    .canvas-workspace {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .canvas-container {
+      flex: 1;
+    }
+
+    /* React Flow overrides */
+    .react-flow__handle {
+      inline-size: 0.5rem;
+      block-size: 0.5rem;
+      border: 2px solid var(--color-bg-base);
+    }
+
+    /* Controls */
+    .canvas-controls {
+      background: oklch(from var(--color-bg-raised) l c h / 0.90) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: var(--shadow-md) !important;
+
+      button {
+        background: transparent !important;
+        border-block-end: 1px solid var(--color-border) !important;
+        color: var(--color-text-muted) !important;
+        fill: var(--color-text-muted) !important;
+
+        &:hover {
+          background: var(--color-primary-alpha-8) !important;
+        }
+
+        svg {
+          fill: var(--color-text-muted) !important;
+        }
+      }
+    }
+
+    /* MiniMap */
+    .canvas-minimap {
+      background: oklch(from var(--color-bg-raised) l c h / 0.90) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+    }
+
+    /* Vybraný uzel */
+    .react-flow__node.selected .pletor-node {
+      box-shadow: 0 0 1.25rem var(--color-primary-alpha-30);
+    }
+  }
+}

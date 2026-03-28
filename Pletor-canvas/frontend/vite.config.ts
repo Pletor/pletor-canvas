@@ -12,4 +12,10 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
+    globals: true,
+    pool: 'forks',
+  },
 })
