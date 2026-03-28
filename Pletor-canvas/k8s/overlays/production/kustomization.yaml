@@ -17,7 +17,7 @@ replicas:
     count: 2
 
 images:
-  - name: ghcr.io/OWNER/pletor-frontend
+  - name: ghcr.io/pletor/pletor-frontend
     newTag: latest
-  - name: ghcr.io/OWNER/pletor-backend
+  - name: ghcr.io/pletor/pletor-backend
     newTag: latest

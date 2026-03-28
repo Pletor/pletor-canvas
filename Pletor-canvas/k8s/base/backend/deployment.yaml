@@ -25,7 +25,7 @@ spec:
     spec:
       initContainers:
         - name: migrate
-          image: ghcr.io/OWNER/pletor-backend:latest
+          image: ghcr.io/pletor/pletor-backend:latest
           command: ["python", "-m", "alembic", "upgrade", "head"]
           envFrom:
             - configMapRef:
@@ -34,7 +34,7 @@ spec:
                 name: backend-secrets
       containers:
         - name: backend
-          image: ghcr.io/OWNER/pletor-backend:latest
+          image: ghcr.io/pletor/pletor-backend:latest
           command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
           ports:
             - containerPort: 8080

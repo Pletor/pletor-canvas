@@ -16,7 +16,7 @@ replicas:
     count: 1
 
 images:
-  - name: ghcr.io/OWNER/pletor-frontend
+  - name: ghcr.io/pletor/pletor-frontend
     newTag: staging
-  - name: ghcr.io/OWNER/pletor-backend
+  - name: ghcr.io/pletor/pletor-backend
     newTag: staging
