@@ -3,7 +3,7 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.canvas import Canvas, generate_cuid
+from app.canvas.canvas_model import Canvas, generate_cuid
 
 
 @pytest.fixture

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config.database import get_db
-from app.schemas.tree_node import (
+from app.tree.tree_schema import (
     CreateNodeRequest,
     MirrorRequest,
     MoveNodeRequest,
@@ -11,7 +11,7 @@ from app.schemas.tree_node import (
     TreeNodeResponse,
     UpdateNodeRequest,
 )
-from app.services import tree_node_service as service
+from app.tree import tree_service as service
 
 router = APIRouter(prefix="/api/v1/tree", tags=["tree"])
 

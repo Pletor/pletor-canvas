@@ -8,14 +8,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config.settings import settings
 from app.config.database import engine
 from app.models.base import Base
-from app.models.canvas import Canvas, CanvasNode, CanvasEdge  # noqa: F401
-from app.models.agent import AgentExecution  # noqa: F401
+from app.canvas.canvas_model import Canvas, CanvasNode, CanvasEdge  # noqa: F401
+from app.agent.agent_model import AgentExecution  # noqa: F401
+from app.tree.tree_model import TreeNode  # noqa: F401
 from app.middlewares.error_handler import register_error_handlers
-from app.controllers.canvas_controller import router as canvas_router
-from app.controllers.workflowy_controller import router as workflowy_router
-from app.controllers.agent_controller import router as agent_router
-from app.controllers.tree_controller import router as tree_router
-from app.models.tree_node import TreeNode  # noqa: F401
+from app.canvas.canvas_controller import router as canvas_router
+from app.agent.agent_controller import router as agent_router
+from app.tree.tree_controller import router as tree_router
 
 
 @asynccontextmanager
@@ -43,7 +42,6 @@ register_error_handlers(app)
 
 # Routery
 app.include_router(canvas_router)
-app.include_router(workflowy_router)
 app.include_router(agent_router)
 app.include_router(tree_router)
 

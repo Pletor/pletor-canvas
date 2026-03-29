@@ -9,8 +9,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config.settings import settings
 from app.middlewares.error_handler import AppError
-from app.models.agent import AgentExecution
-from app.services.agent_context_builder import build_agent_context, build_prompt_from_context
+from app.agent.agent_model import AgentExecution
+from app.agent.agent_context_builder import build_agent_context, build_prompt_from_context
 
 SYSTEM_PROMPT = """Jsi AI agent v systému Pletor — vizuálním orchestračním IDE.
 Generuješ kód na základě kontextu z WorkFlowy a canvas závislostí.

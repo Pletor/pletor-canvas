@@ -70,4 +70,4 @@ class CanvasEdge(Base, TimestampMixin):
 
 
 # Import pro relationship reference
-from app.models.agent import AgentExecution  # noqa: E402, F401
+from app.agent.agent_model import AgentExecution  # noqa: E402, F401

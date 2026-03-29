@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.middlewares.error_handler import AppError, NotFoundError
-from app.models.tree_node import TreeNode
-from app.repositories import tree_node_repository as repo
+from app.tree.tree_model import TreeNode
+from app.tree import tree_repository as repo
 
 
 async def _get_node_or_404(db: AsyncSession, node_id: str) -> TreeNode:
@@ -207,7 +207,7 @@ async def duplicate_subtree(db: AsyncSession, node_id: str) -> TreeNode:
         raise NotFoundError("TreeNode")
 
     # Mapování starých ID → nové ID
-    from app.models.canvas import generate_cuid
+    from app.canvas.canvas_model import generate_cuid
     id_map: dict[str, str] = {}
     for row in flat:
         id_map[str(row["id"])] = generate_cuid()

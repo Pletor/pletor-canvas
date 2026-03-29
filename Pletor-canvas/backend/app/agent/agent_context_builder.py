@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.middlewares.error_handler import NotFoundError
-from app.models.canvas import Canvas, CanvasEdge, CanvasNode
+from app.canvas.canvas_model import Canvas, CanvasEdge, CanvasNode
 
 
 async def build_agent_context(db: AsyncSession, canvas_node_id: str) -> dict[str, Any]:

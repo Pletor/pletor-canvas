@@ -2,7 +2,7 @@ from sqlalchemy import Boolean, ForeignKey, Index, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.models.base import Base, TimestampMixin
-from app.models.canvas import generate_cuid
+from app.canvas.canvas_model import generate_cuid
 
 
 class TreeNode(Base, TimestampMixin):
@@ -54,4 +54,4 @@ class TreeNode(Base, TimestampMixin):
 
 
 # Import pro relationship reference
-from app.models.canvas import Canvas  # noqa: E402, F401
+from app.canvas.canvas_model import Canvas  # noqa: E402, F401

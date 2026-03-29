@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from app.schemas.canvas import camel_alias
+from app.canvas.canvas_schema import camel_alias
 
 
 class PositionSpec(BaseModel):

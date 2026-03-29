@@ -29,4 +29,4 @@ class AgentExecution(Base, TimestampMixin):
     canvas_node: Mapped["CanvasNode"] = relationship(back_populates="executions")
 
 
-from app.models.canvas import CanvasNode  # noqa: E402, F401
+from app.canvas.canvas_model import CanvasNode  # noqa: E402, F401

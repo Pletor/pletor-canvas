@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Response
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config.database import get_db
-from app.schemas.canvas import (
+from app.canvas.canvas_schema import (
     BatchSaveRequest,
     BatchSaveResponse,
     CanvasDetailResponse,
@@ -16,7 +16,7 @@ from app.schemas.canvas import (
     UpdateEdgeRequest,
     UpdateNodeRequest,
 )
-from app.services import canvas_service as service
+from app.canvas import canvas_service as service
 
 router = APIRouter()
 

@@ -7,7 +7,7 @@ import pytest
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.canvas import Canvas, CanvasNode
+from app.canvas.canvas_model import Canvas, CanvasNode
 
 
 async def _seed_canvas_with_node(db: AsyncSession) -> tuple[str, str]:
@@ -55,7 +55,7 @@ async def test_execute_agent(client: AsyncClient, db: AsyncSession):
     mock_response.content = [MagicMock(type="text", text="const result = 42;")]
     mock_response.usage = MagicMock(input_tokens=100, output_tokens=50)
 
-    with patch("app.services.agent_execution_service._get_client") as mock_client:
+    with patch("app.agent.agent_execution_service._get_client") as mock_client:
         mock_client.return_value.messages.create = AsyncMock(return_value=mock_response)
 
         resp = await client.post(f"/api/v1/agents/{node_id}/execute", json={})
@@ -83,7 +83,7 @@ async def test_execute_agent_stream(client: AsyncClient, db: AsyncSession):
     mock_stream_ctx.text_stream = mock_text_stream()
     mock_stream_ctx.get_final_message = AsyncMock(return_value=mock_final)
 
-    with patch("app.services.agent_execution_service._get_client") as mock_client:
+    with patch("app.agent.agent_execution_service._get_client") as mock_client:
         mock_client.return_value.messages.stream = MagicMock(return_value=mock_stream_ctx)
 
         resp = await client.post(f"/api/v1/agents/{node_id}/stream", json={})

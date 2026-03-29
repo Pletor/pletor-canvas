@@ -1,8 +1,8 @@
 from fractional_indexing import generate_key_between
-from sqlalchemy import String, column, delete, literal, select, text, union_all
+from sqlalchemy import delete, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.tree_node import TreeNode
+from app.tree.tree_model import TreeNode
 
 
 async def get_by_id(db: AsyncSession, node_id: str) -> TreeNode | None:

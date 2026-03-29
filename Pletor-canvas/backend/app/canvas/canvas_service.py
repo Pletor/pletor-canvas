@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.middlewares.error_handler import NotFoundError
-from app.models.canvas import Canvas, CanvasEdge, CanvasNode
-from app.repositories import canvas_repository as repo
-from app.schemas.canvas import (
+from app.canvas.canvas_model import Canvas, CanvasEdge, CanvasNode
+from app.canvas import canvas_repository as repo
+from app.canvas.canvas_schema import (
     BatchSaveRequest,
     CreateCanvasRequest,
     CreateEdgeRequest,

@@ -4,9 +4,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config.database import get_db
 from app.middlewares.error_handler import NotFoundError
-from app.schemas.agent import ExecuteAgentRequest
-from app.services.agent_context_builder import build_agent_context
-from app.services.agent_execution_service import (
+from app.agent.agent_schema import ExecuteAgentRequest
+from app.agent.agent_context_builder import build_agent_context
+from app.agent.agent_execution_service import (
     execute_agent,
     execute_agent_stream,
     get_execution_by_id,
