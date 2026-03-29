@@ -9,9 +9,9 @@ from app.config.settings import settings
 from app.models.base import Base
 
 # Importuj všechny modely, aby Alembic viděl metadata
-from app.models.canvas import Canvas, CanvasNode, CanvasEdge  # noqa: F401
-from app.models.agent import AgentExecution  # noqa: F401
-from app.models.tree_node import TreeNode  # noqa: F401
+from app.canvas.canvas_model import Canvas, CanvasNode, CanvasEdge  # noqa: F401
+from app.agent.agent_model import AgentExecution  # noqa: F401
+from app.tree.tree_model import TreeNode  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
