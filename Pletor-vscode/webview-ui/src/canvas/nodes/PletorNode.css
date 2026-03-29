@@ -1,0 +1,76 @@
+.pletor-node {
+  min-width: 160px;
+  max-width: 260px;
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-size: 12px;
+}
+
+.pletor-node:hover {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3);
+}
+
+.pletor-node.selected {
+  box-shadow: 0 0 0 2px currentColor;
+}
+
+.pletor-node-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pletor-node-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.pletor-node-label {
+  flex: 1;
+  font-weight: 600;
+  color: #e2e8f0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pletor-node-status {
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.pletor-node-meta {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pletor-node-path {
+  font-family: monospace;
+  font-size: 10px;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pletor-node-intent {
+  font-size: 11px;
+  color: #94a3b8;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pletor-node-notes-badge {
+  margin-top: 5px;
+  font-size: 10px;
+  color: #64748b;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 4px;
+}

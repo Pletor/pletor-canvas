@@ -1,0 +1,6 @@
+node_modules/**
+webview-ui/node_modules/**
+webview-ui/src/**
+src/**
+.gitignore
+*.map

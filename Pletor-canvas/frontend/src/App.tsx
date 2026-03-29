@@ -1,6 +1,9 @@
 import { useState } from 'react'
-import { AppHeader, AppSidebar, AppFooter } from './components/layout'
-import { SettingsPage, CanvasPage } from './pages'
+import AppHeader from './layout/AppHeader/AppHeader'
+import AppSidebar from './layout/AppSidebar/AppSidebar'
+import AppFooter from './layout/AppFooter/AppFooter'
+import SettingsPage from './settings/SettingsPage/SettingsPage'
+import CanvasPage from './canvas/CanvasPage/CanvasPage'
 import './App.css'
 
 function App() {

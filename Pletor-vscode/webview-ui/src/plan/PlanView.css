@@ -1,0 +1,220 @@
+:root {
+  --bg: #0c1f17;
+  --bg-2: #0f2a1e;
+  --bg-3: #162d22;
+  --border: #1a3a2a;
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --accent: #10b981;
+  --accent-dim: rgba(16, 185, 129, 0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.plan-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 0 40px;
+}
+
+/* Header */
+.plan-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.plan-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-logo {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.plan-title {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.plan-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-context-size {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.plan-canvas-btn,
+.plan-save-btn {
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+
+.plan-canvas-btn {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.plan-canvas-btn:hover {
+  background: var(--accent-dim);
+}
+
+.plan-save-btn {
+  background: var(--accent);
+  color: #0c1f17;
+  font-weight: 600;
+  border-color: var(--accent);
+}
+
+.plan-save-btn:hover {
+  opacity: 0.85;
+}
+
+.plan-save-btn.saved {
+  background: #059669;
+}
+
+/* Hint */
+.plan-hint {
+  margin: 16px 20px 4px;
+  padding: 10px 14px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--accent);
+  line-height: 1.6;
+}
+
+/* Fields */
+.plan-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.plan-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.plan-field-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plan-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plan-field-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: right;
+  flex-shrink: 1;
+}
+
+.plan-field-textarea {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 10px 12px;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+
+.plan-field-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-3);
+}
+
+.plan-field-textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.plan-field-count {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* Footer */
+.plan-footer {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  margin-top: 10px;
+}
+
+.plan-save-btn-bottom {
+  padding: 8px 20px;
+  background: var(--accent);
+  color: #0c1f17;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.plan-save-btn-bottom:hover { opacity: 0.85; }
+
+.plan-canvas-btn-bottom {
+  padding: 8px 20px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 13px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.plan-canvas-btn-bottom:hover { background: var(--accent-dim); }

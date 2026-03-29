@@ -7,7 +7,7 @@ Secrets se NIKDY necommitují do gitu. Vytvoř je ručně:
 kubectl create secret generic backend-secrets \
   --namespace pletor \
   --from-literal=DATABASE_URL="postgresql+asyncpg://pletor:PASSWORD@postgres:5432/pletor" \
-  --from-literal=ANTHROPIC_API_KEY="sk-ant-..." \
+  --from-literal=ANTHROPIC_API_KEY="sk-ant..." \
   --from-literal=WORKFLOWY_API_KEY="..."
 
 # Postgres secrets
